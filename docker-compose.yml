@@ -1,0 +1,12 @@
+volumes:
+  pgdata:
+
+services:
+  pg:
+    image: postgres:latest
+    env_file: .env
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    network_mode: "host"
+    ports:
+      - 5432:5432
