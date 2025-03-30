@@ -22,4 +22,7 @@ async def user_get(email: str, id: Union[str, uuid.UUID]):
     async with async_session() as session:
         q = await session.execute(select(User).where(User.id == id, User.email == email))
         return q.scalar_one_or_none()
-        
+
+
+async def get_object_or_404(session, obj):
+    ...

@@ -20,4 +20,6 @@ class AppConfig:
     ya_secret = os.getenv('YANDEX_CLIENT_SECRET')
     ya_red_uri = os.getenv('REDIRECT_URI')
 
+    su_default_emails = [email for email in os.getenv('SU_DEFAULT_EMAIL').split(' ') if email]
+
     debug = False if os.getenv('DEBUG') != 'True' else True
