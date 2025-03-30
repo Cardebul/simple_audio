@@ -30,4 +30,8 @@ class Audio(Base):
     user_id: Mapped[uuid.UUID] = mapped_column(ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     user: Mapped['User'] = relationship(back_populates='audio')
 
+    @property
+    def get_name(self):
+        return self.name[36:]
+
 

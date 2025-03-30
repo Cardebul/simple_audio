@@ -3,8 +3,9 @@ from datetime import datetime, timedelta, timezone
 import jwt
 
 from app.config import AppConfig as ac
-from app.serializers.serializers import Token, TokenUser
 from app.db.models import User
+from app.serializers.serializers import Token, TokenUser
+
 
 def get_tokens(user: User):
     token_user = TokenUser.model_validate(user)
