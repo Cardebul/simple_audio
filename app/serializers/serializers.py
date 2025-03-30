@@ -26,7 +26,7 @@ class User(BaseModel): email: str
 
 class Audio(BaseModel):
     id: UUID4
-    name: str
+    get_name: str
     path: str
 
     model_config = ConfigDict(from_attributes=True)

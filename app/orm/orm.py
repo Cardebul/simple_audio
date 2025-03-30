@@ -17,10 +17,10 @@ async def user_get_or_create(email: str):
         await session.commit()
         return user
 
-async def user_get(email: str, id: Union[str, uuid.UUID]):
+async def user_get(email: str, id: Union[str, uuid.UUID], is_active: bool):
     id = uuid.UUID(id) if isinstance(id, str) else id
     async with async_session() as session:
-        q = await session.execute(select(User).where(User.id == id, User.email == email))
+        q = await session.execute(select(User).where(User.id == id, User.email == email, User.is_active == is_active))
         return q.scalar_one_or_none()
 
 

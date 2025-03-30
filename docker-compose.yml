@@ -7,6 +7,18 @@ services:
     env_file: .env
     volumes:
       - pgdata:/var/lib/postgresql/data
-    network_mode: "host"
     ports:
       - 5432:5432
+    restart: on-failure
+    
+  service:
+    env_file: .env
+    build: .
+    command: ["bash", "ex.sh"]
+    volumes:
+      - ./audio:/app/audio
+    depends_on:
+      - pg
+    restart: on-failure
+    ports:
+      - 8000:8000

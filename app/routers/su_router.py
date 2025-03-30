@@ -40,8 +40,8 @@ async def user_delete(
     user = q.scalar_one_or_none()
     if not user: raise exc.not_found
     if user.is_superuser: raise exc.su_not_allowed
-    # before delete
-    session.delete(user)
+    # TODO audio delete
+    await session.delete(user)
     await session.commit()
     return ''
 

@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends
 
 from app.db.models import User as mUser
-from app.dependencies import get_current_user, is_refresh
+from app.dependencies import get_current_user_refresh
 from app.orm.orm import user_get_or_create
 from app.serializers.serializers import Token
 from app.utils.token_utils import get_tokens
@@ -27,7 +27,6 @@ async def auth_yandex_callback(code: str, cid: str) -> Token: # error error_desc
 
 @router.get("/refresh")
 async def auth_refresh(
-    current_user: Annotated[mUser, Depends(get_current_user)],
-    is_refresh: Annotated[bool, Depends(is_refresh)],
+    current_user: Annotated[mUser, Depends(get_current_user_refresh)],
 ) -> Token:
     return get_tokens(current_user)
